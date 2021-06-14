@@ -13,5 +13,13 @@
     </ion-toolbar>
   </ion-header>
 
+  <h2>Wybierz rodzaj dania</h2>
+  <div *ngFor="let hits of recipies">
+    <h3>Kcal: {{hits.recipe.calories}}</h3>
+    <img [src]="hits.recipe.image" alt="image">
+  </div>
+
+  {{recipies}}
+
   <app-explore-container name="No hej"></app-explore-container>
 </ion-content>
