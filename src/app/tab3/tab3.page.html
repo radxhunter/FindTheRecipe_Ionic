@@ -13,13 +13,65 @@
     </ion-toolbar>
   </ion-header>
 
-  <h2>Wybierz rodzaj dania</h2>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        Pick your dish
+      </ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Kind</ion-label>
+      <ion-select [(ngModel)]="kind">
+        <ion-select-option value="Chicken">Chicken</ion-select-option>
+        <ion-select-option value="Pork">Pork</ion-select-option>
+        <ion-select-option value="Beef">Beef</ion-select-option>
+        <ion-select-option value="Fish">Fish</ion-select-option>
+        <ion-select-option value="Vege">Vege</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Diet Label</ion-label>
+      <ion-select [(ngModel)]="dietLabel" value="Low-Fat">
+        <ion-select-option value="balanced">Balanced</ion-select-option>
+        <ion-select-option value="high-protein">High-Protein</ion-select-option>
+        <ion-select-option value="low-carb">Low-Carb</ion-select-option>
+        <ion-select-option value="low-fat">Low-Fat</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cuisine Type</ion-label>
+      <ion-select [(ngModel)]="cuisineType" value="Italian">
+        <ion-select-option value="American">American</ion-select-option>
+        <ion-select-option value="Asian">Asian</ion-select-option>
+        <ion-select-option value="Chinese">Chinese</ion-select-option>
+        <ion-select-option value="Indian">Indian</ion-select-option>
+        <ion-select-option value="Italian">Italian</ion-select-option>
+        <ion-select-option value="Mexican">Mexican</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Meal Type</ion-label>
+      <ion-select [(ngModel)]="type" value="Breakfast">
+        <ion-select-option value="Breakfast">Breakfast</ion-select-option>
+        <ion-select-option value="Lunch">Lunch</ion-select-option>
+        <ion-select-option value="Dinner">Dinner</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-button (click)="searchForRecipies()" expand="block" fill="clear" shape="round">
+    Wyszukaj przepisy
+  </ion-button>
+
   <div *ngFor="let hits of recipies">
-    <h3>Kcal: {{hits.recipe.calories}}</h3>
+    <h4><ion-text color="dark" >{{hits.recipe.label}}</ion-text></h4>
+    <h6><ion-text color="MEDIUM">{{hits.recipe.calories | number: '1.0-0'}} kcal</ion-text></h6>
+    <ion-button href="{{hits.recipe.url}}" size="small">Open Recipe</ion-button>
     <img [src]="hits.recipe.image" alt="image">
   </div>
 
-  {{recipies}}
-
-  <app-explore-container name="No hej"></app-explore-container>
 </ion-content>

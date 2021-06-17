@@ -10,18 +10,24 @@ export class Tab3Page implements OnInit {
   tytul: string;
   filteredRecipies: any;
   recipies: any;
-  cuisineType: any;
-  dietLabels: any;
+  url: any;
+  cuisineType: any = 'Italian';
+  dietLabel: any = 'low-fat';
   dishType: any;
-  type = 'fish';
+  type: any = 'Lunch';
+  kind: any = 'Fish';
   constructor(private recipeData: RecipeService) {}
 
   ngOnInit(){
     this.tytul = this.recipeData.title;
-    this.recipeData.getRecipies().subscribe((data: any) =>{
+    /*this.recipeData.getRecipiesByDiet(this.type,'low-fat').subscribe((data: any) => {
+      console.log(data);
+    });*/
+  }
+
+  searchForRecipies() {
+    this.recipeData.getFullRecipies(this.kind, this.dietLabel, this.cuisineType, this.type).subscribe((data: any) => {
       this.recipies = data.hits;
-    });
-    this.recipeData.getRecipiesByDiet(this.type,'low-fat').subscribe((data: any) => {
       console.log(data);
     });
   }
